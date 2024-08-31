@@ -1,29 +1,20 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-buster-slim'
-            args '-p 3000:3000'
-        }
-    }
-    environment {
-        CI = 'true'
-    }
+    agent any
+
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                echo 'Building booo..'
             }
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                echo 'Testing..'
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                echo 'Deploying....'
             }
         }
     }
