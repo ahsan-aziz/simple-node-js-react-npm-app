@@ -1,3 +1,3 @@
 pkill node
 npm install
-npm start &
+nohup npm start &
